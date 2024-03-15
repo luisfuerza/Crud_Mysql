@@ -30,5 +30,11 @@ export const createProduct = async (productData) =>{
 //actualizar producto existente
 export const updateProduct = async(productId,productData)=>{
     const {name,price,description} = productData;
-    const [result] = await pool.query('UPDATE products SET name=?,price=?,description=? WHERE id=?',[name,price,description,productId]);
+    const [result] = await pool.query('UPDATE products SET name=?,price=?,description=? WHERE id=?',
+    [name,price,description,productId]);
+};
+//eliminar producto
+//delete
+export const deleteProduct = async(productId)=>{
+    await pool.query('DELETE FROM products WHERE id=?',productId);
 }
